@@ -95,12 +95,14 @@ button {
   border: 1px solid #3a3a3a;
   color: #ccc;
   border-radius: 6px;
-  padding: 6px 12px;
+  padding: 8px 14px;
+  min-height: 44px;
+  flex-shrink: 0;
 }
 
 .app-main {
   flex: 1;
-  padding: 20px;
+  padding: 16px;
 }
 
 .state-message {
@@ -160,12 +162,28 @@ button {
   border: 1px solid #3a3a3a;
   color: #ccc;
   border-radius: 6px;
-  padding: 6px 12px;
+  padding: 8px 14px;
+  min-height: 44px;
+  flex-shrink: 0;
 }
 
 .track-list-header h2 {
   margin: 0;
   font-size: 1.1rem;
+}
+
+.track-search {
+  margin-bottom: 12px;
+}
+
+.track-search input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #3a3a3a;
+  background: #1e1e1e;
+  color: #fff;
+  font-size: 1rem;
 }
 
 .track-list {
@@ -178,7 +196,8 @@ button {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 10px 12px;
+  padding: 12px;
+  min-height: 44px;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -200,6 +219,33 @@ button {
 
 .track-item.active .track-item-status {
   color: #1db954;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
+}
+
+.pagination button {
+  background: #1e1e1e;
+  border: 1px solid #3a3a3a;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 14px;
+  min-height: 44px;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  color: #999;
+  font-size: 0.9rem;
 }
 
 /* 底部播放列 */
@@ -248,8 +294,10 @@ button {
   background: transparent;
   border: none;
   color: #ccc;
-  font-size: 1.1rem;
-  padding: 4px;
+  font-size: 1.3rem;
+  padding: 10px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .icon-btn.active {
@@ -264,10 +312,37 @@ button {
 }
 
 @media (max-width: 640px) {
+  .app {
+    padding-bottom: 220px;
+  }
+
+  .app-header {
+    padding: 12px 16px;
+  }
+
+  .app-header h1 {
+    font-size: 1.05rem;
+  }
+
+  .track-list-header {
+    flex-wrap: wrap;
+  }
+
+  .track-list-header h2 {
+    width: 100%;
+    order: 1;
+  }
+
+  .playlist-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
   .player-bar {
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
+    padding: 10px 12px;
   }
 
   .player-bar-info {
@@ -277,5 +352,9 @@ button {
 
   .player-bar-buttons {
     justify-content: center;
+  }
+
+  .player-bar-frame {
+    width: 100%;
   }
 }

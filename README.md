@@ -60,12 +60,13 @@ npm run dev
 
 ## 新增／更新播放清單
 
-1. 打開該 Google Drive 資料夾（先確認權限已設定「知道連結可檢視」）
-2. 按 F12 開開發人員工具 → Console，貼上 [scripts/scan-drive-folder.js](scripts/scan-drive-folder.js) 的內容並執行，會印出該資料夾所有檔案的 `{id, name}` JSON
-3. 把印出的內容整理進 [src/data/playlists.js](src/data/playlists.js)（新增一個播放清單物件，或更新既有的 `tracks` 陣列）
+1. **用登入你自己 Google 帳號的瀏覽器**打開該 Google Drive 資料夾（先確認權限已設定「知道連結可檢視」）
+   - ⚠️ 重要：資料夾檔案數超過 50 個時，一定要登入才能看到全部檔案。用「無痕視窗」或登出狀態開啟公開連結，Drive 最多只會載入前 50 個檔案，捲到底也不會載入更多，這是 Google 匿名檢視的限制，不是程式的 bug。
+2. 按 F12 開開發人員工具 → Console，貼上 [scripts/scan-drive-folder.js](scripts/scan-drive-folder.js) 的內容並執行（檔案數多的話，程式會自動持續捲動載入，需要一點時間，Console 會印出進度）
+3. 執行完會印出該資料夾所有檔案的 `{id, name}` JSON，把內容整理進 [src/data/playlists.js](src/data/playlists.js)（新增一個播放清單物件，或更新既有的 `tracks` 陣列）
 4. commit、push 到 `main`，GitHub Actions 會自動重新部署
 
-也可以直接請 Claude 幫忙做這件事：把 Drive 資料夾的分享連結給它，它可以自動掃描並更新 `playlists.js`。
+也可以直接請 Claude 幫忙做這件事：把 Drive 資料夾的分享連結給它，它可以自動掃描並更新 `playlists.js`（但如果資料夾超過 50 個檔案，Claude 只能看到匿名檢視的前 50 個，需要你自己登入帳號跑一次上面的步驟，把結果貼給它）。
 
 ## 安全性與已知限制（請詳閱）
 

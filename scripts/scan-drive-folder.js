@@ -1,7 +1,8 @@
 // 使用方式：
-// 1. 用瀏覽器打開該 Google Drive 資料夾的分享連結（資料夾與檔案需設定「知道連結的使用者可檢視」）
+// 1. 用「登入你自己 Google 帳號」的瀏覽器打開該 Google Drive 資料夾
+//    （匿名／未登入檢視最多只會載入前 50 個檔案，超過 50 首的資料夾一定要登入才能抓全）
 // 2. 按 F12 打開開發人員工具，切到 Console 分頁
-// 3. 貼上這整段程式碼並按 Enter 執行
+// 3. 貼上這整段程式碼並按 Enter 執行（過程會持續捲動載入，檔案越多跑越久，請耐心等待）
 // 4. 執行完會印出 JSON，把裡面的陣列內容貼進 src/data/playlists.js 對應播放清單的 tracks
 
 ;(async function scanDriveFolder() {
@@ -21,6 +22,10 @@
     }
     el = el.parentElement
   }
+  if (!scroller) {
+    console.error('找不到可捲動的清單容器')
+    return
+  }
 
   const collected = new Map()
   function collect() {
@@ -32,16 +37,21 @@
   }
   collect()
 
-  if (scroller) {
-    const step = 300
-    for (let y = 0; y <= scroller.scrollHeight; y += step) {
-      scroller.scrollTop = y
-      await new Promise((r) => setTimeout(r, 150))
-      collect()
-    }
+  // 持續捲到底部並等待新一批資料載入，直到連續多次都沒有新增項目才停止
+  // （Google Drive 的清單是分批載入的，捲到目前的底部後，需要等待網路請求才會出現下一批）
+  let stableRounds = 0
+  let lastCount = collected.size
+  for (let i = 0; i < 600 && stableRounds < 8; i++) {
     scroller.scrollTop = scroller.scrollHeight
-    await new Promise((r) => setTimeout(r, 200))
+    await new Promise((r) => setTimeout(r, 400))
     collect()
+    if (collected.size === lastCount) {
+      stableRounds++
+    } else {
+      stableRounds = 0
+      lastCount = collected.size
+      console.log(`已載入 ${collected.size} 個檔案...`)
+    }
   }
 
   const out = Array.from(collected.entries()).map(([id, name]) => ({
