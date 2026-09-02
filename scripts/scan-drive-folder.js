@@ -3,7 +3,7 @@
 //    （匿名／未登入檢視最多只會載入前 50 個檔案，超過 50 首的資料夾一定要登入才能抓全）
 // 2. 按 F12 打開開發人員工具，切到 Console 分頁
 // 3. 貼上這整段程式碼並按 Enter 執行（過程會持續捲動載入，檔案越多跑越久，請耐心等待）
-// 4. 執行完會印出 JSON，把裡面的陣列內容貼進 src/data/playlists.js 對應播放清單的 tracks
+// 4. 執行完會印出 JSON，把裡面的陣列內容貼進 src/data/trackManifest.js，用該資料夾 ID 當 key
 
 ;(async function scanDriveFolder() {
   const row = document.querySelector('[role="row"][data-id]')

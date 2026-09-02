@@ -120,6 +120,27 @@ button {
   color: #ff6b6b;
 }
 
+/* 播放清單工具列 */
+.playlist-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.refresh-btn {
+  background: transparent;
+  border: 1px solid #3a3a3a;
+  color: #ccc;
+  border-radius: 6px;
+  padding: 8px 14px;
+  min-height: 44px;
+}
+
+.refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* 播放清單網格 */
 .playlist-grid {
   display: grid;
@@ -144,8 +165,22 @@ button {
   background: #2a2a2a;
 }
 
+.playlist-card.pending {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.playlist-card.pending:hover {
+  background: #1e1e1e;
+}
+
 .playlist-card-icon {
   font-size: 2rem;
+}
+
+.playlist-card-hint {
+  font-size: 0.75rem;
+  color: #999;
 }
 
 .playlist-card-name {
