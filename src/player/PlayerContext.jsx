@@ -17,6 +17,7 @@ export function PlayerProvider({ children }) {
   const [order, setOrder] = useState([])
   const [position, setPosition] = useState(0)
   const [shuffle, setShuffle] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(true)
 
   const currentIndex = order.length ? order[position] : -1
   const currentTrack = currentIndex >= 0 ? tracks[currentIndex] : null
@@ -36,9 +37,14 @@ export function PlayerProvider({ children }) {
     (index) => {
       const pos = order.indexOf(index)
       setPosition(pos === -1 ? 0 : pos)
+      setIsExpanded(true) // 選新曲目時自動展開播放器，方便馬上按播放
     },
     [order]
   )
+
+  const toggleExpanded = useCallback(() => {
+    setIsExpanded((v) => !v)
+  }, [])
 
   const next = useCallback(() => {
     setPosition((p) => (order.length ? (p + 1) % order.length : 0))
@@ -72,11 +78,13 @@ export function PlayerProvider({ children }) {
     tracks,
     currentTrack,
     shuffle,
+    isExpanded,
     loadPlaylist,
     playTrackAt,
     next,
     prev,
     toggleShuffle,
+    toggleExpanded,
   }
 
   return <PlayerContext.Provider value={value}>{children}</PlayerContext.Provider>

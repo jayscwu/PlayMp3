@@ -288,7 +288,7 @@ button {
   font-size: 0.9rem;
 }
 
-/* 底部播放列 */
+/* 底部播放列：緊湊雙列版面，可收合 iframe 那一列釋放畫面空間 */
 .player-bar {
   position: fixed;
   bottom: 0;
@@ -296,16 +296,22 @@ button {
   right: 0;
   background: #181818;
   border-top: 1px solid #2a2a2a;
-  padding: 10px 20px;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.player-bar-row {
   display: flex;
   align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .player-bar-info {
-  min-width: 140px;
-  max-width: 220px;
+  min-width: 0;
+  flex: 1;
 }
 
 .player-bar-title {
@@ -327,26 +333,36 @@ button {
 .player-bar-buttons {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 2px;
+  flex-shrink: 0;
 }
 
 .icon-btn {
   background: transparent;
   border: none;
   color: #ccc;
-  font-size: 1.3rem;
-  padding: 10px;
-  min-width: 44px;
-  min-height: 44px;
+  font-size: 1.2rem;
+  padding: 8px;
+  min-width: 40px;
+  min-height: 40px;
 }
 
 .icon-btn.active {
   color: #1db954;
 }
 
+.player-bar-frame-wrap {
+  height: 70px;
+  overflow: hidden;
+  transition: height 0.15s ease;
+}
+
+.player-bar-frame-wrap.collapsed {
+  height: 0;
+}
+
 .player-bar-frame {
-  flex: 1;
-  min-width: 240px;
+  width: 100%;
   height: 70px;
   border: none;
 }
@@ -372,25 +388,5 @@ button {
   .playlist-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 12px;
-  }
-
-  .player-bar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    padding: 10px 12px;
-  }
-
-  .player-bar-info {
-    max-width: none;
-    text-align: center;
-  }
-
-  .player-bar-buttons {
-    justify-content: center;
-  }
-
-  .player-bar-frame {
-    width: 100%;
   }
 }
