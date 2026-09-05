@@ -1,4 +1,4 @@
-# 家庭音樂播放器（PlayMP3）
+# Mason與Emily睡前故事（PlayMP3）
 
 播放存放在 Google 雲端硬碟裡的音訊檔案（mp3/m4a）的網頁播放器。每個 Google Drive 資料夾視為一個播放清單。純前端架構，部署在 GitHub Pages，不需要自建後端，也**不使用 Google Drive API / API Key**。
 

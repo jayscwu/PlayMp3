@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export function PasswordGate({ login }) {
+export function PasswordGate({ login, title, themeButton }) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
   const [checking, setChecking] = useState(false)
@@ -19,8 +19,9 @@ export function PasswordGate({ login }) {
 
   return (
     <div className="gate">
+      {themeButton && <div className="gate-theme-toggle">{themeButton}</div>}
       <form className="gate-card" onSubmit={handleSubmit}>
-        <h1>家庭音樂播放器</h1>
+        <h1>{title}</h1>
         <p>請輸入密碼以繼續</p>
         <input
           type="password"
