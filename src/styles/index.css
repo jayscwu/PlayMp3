@@ -123,7 +123,9 @@ button {
 /* 播放清單工具列 */
 .playlist-toolbar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
+  gap: 10px;
   margin-bottom: 16px;
 }
 
@@ -139,6 +141,31 @@ button {
 .refresh-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* 類別篩選 */
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.category-tab {
+  background: #1e1e1e;
+  border: 1px solid #3a3a3a;
+  color: #ccc;
+  border-radius: 999px;
+  padding: 8px 16px;
+  min-height: 40px;
+  font-size: 0.85rem;
+}
+
+.category-tab.active {
+  background: #1db954;
+  border-color: #1db954;
+  color: #000;
+  font-weight: 600;
 }
 
 /* 播放清單網格 */

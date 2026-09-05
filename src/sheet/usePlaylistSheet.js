@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { fetchPlaylistSheet } from './playlistSheet.js'
+import { fetchTrackSheet } from './trackSheet.js'
 
 export function usePlaylistSheet() {
   const [playlists, setPlaylists] = useState([])
@@ -10,7 +11,13 @@ export function usePlaylistSheet() {
     setStatus('loading')
     setError(null)
     try {
-      const list = await fetchPlaylistSheet()
+      const [rows, tracksByFolder] = await Promise.all([fetchPlaylistSheet(), fetchTrackSheet()])
+      const list = rows.map((row) => ({
+        name: row.name,
+        category: row.category,
+        folderId: row.folderId,
+        tracks: row.folderId ? (tracksByFolder[row.folderId] ?? null) : null,
+      }))
       setPlaylists(list)
       setStatus('ready')
     } catch (e) {
