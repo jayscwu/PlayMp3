@@ -6,4 +6,4 @@ export const PLAYLIST_SHEET_ID = '1boptt7izenzRh0x9dbY5YBMe6BVQPwU8QnAwptEB_tU'
 
 // Google Apps Script 部署成「網頁應用程式」後的網址，網站的「重新掃描曲目」按鈕會打這個網址。
 // 見 README「Google Apps Script 自動掃描設定」；部署完成前留空，按鈕會顯示錯誤訊息。
-export const RESCAN_WEB_APP_URL = ''
+export const RESCAN_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyNsy4W1Sf6W-NgDBmvIUFDvwz-XMnsPOtHE287aNqw_Q921b9ouaqWdgj3CmtWpFEu/exec'
